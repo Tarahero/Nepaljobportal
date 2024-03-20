@@ -74,12 +74,12 @@ const Sidebar = () => {
         </Box>
         <ul>
           <Flex
-            as="footer"
             align="center"
-            justify="center"
+            position={"absolute"}
+            left={"4rem"}
+            top={"90vh"}
             direction="column"
-            marginTop={"43.8vh"}
-            left={"0px"}
+            transition={".1s"}
           >
             <List>
               <Link to="/help">
