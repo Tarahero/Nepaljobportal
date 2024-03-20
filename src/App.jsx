@@ -41,31 +41,31 @@ function App() {
           element: <Notification />,
         },
         {
-          path: "setting",
+          path: "/setting",
           element: <Setting />,
         },
         {
-          path: "help",
+          path: "/help",
           element: <Help />,
         },
         {
-          path: "userprofile",
+          path: "/userprofile",
           element: <UserProfile />,
         },
         {
-          path: "providerdashboard",
+          path: "/providerdashboard",
           element: <ProviderDashboard />,
         },
         {
-          path: "applicants",
+          path: "/applicants",
           element: <Applicants />,
         },
         {
-          path: "providerprofile",
+          path: "/providerprofile",
           element: <ProviderProfile />,
         },
         {
-          path: "addjob",
+          path: "/addjob",
           element: <AddJob />,
         },
       ],

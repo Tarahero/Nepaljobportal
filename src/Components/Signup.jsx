@@ -1,4 +1,13 @@
-import { Box, Input, Text, Button, Flex, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Input,
+  Text,
+  Button,
+  Flex,
+  Image,
+  Radio,
+  RadioGroup,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +19,7 @@ import { Checkbox } from "@chakra-ui/react";
 import vector from "../assets/img/vector.png";
 import logo from "../assets/img/logo.png";
 import lines44 from "../assets/img/Line44.png";
-import '../App.css'
+import "../App.css";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -27,10 +36,12 @@ const Signup = () => {
     event.preventDefault();
     try {
       const roleValue = values.IsProvider ? 0 : values.IsSubscriber ? 1 : null;
-      const response = await axios.post("http://10.10.60.62:3001/signup", {
+      console.log(roleValue)
+      const response = await axios.post("http://localhost:3001/signup", {
         ...values,
         Role: roleValue,
       });
+      
       console.log(response);
       console.log("created successfully");
       navigate("/login");
@@ -41,20 +52,15 @@ const Signup = () => {
 
   return (
     <>
-
-
-    
       <div className="background">
         <Box>
           <img src={vector} className="vector" alt=""></img>
         </Box>
       </div>
 
-    
-
       <Image src={logo} alt="" position={"absolute"} h={"92px"} w={"114px"} />
       <Image
-      className="signup"
+        className="signup"
         src={stand}
         alt=""
         height={"100vh"}
@@ -64,11 +70,9 @@ const Signup = () => {
 
       <form onSubmit={handleSubmit}>
         <Box
-        className="main_container"
+          className="main_container"
           bgColor={"#C1C1C1"}
-          
           height={"80vh"}
-          
           position={"absolute"}
           top={"10vh"}
           right={"40vh"}
@@ -85,14 +89,12 @@ const Signup = () => {
             Create Account
           </Text>
           <Box
-          
             bgColor={"#DDDBCB"}
             borderRadius={"15px"}
             height={"70vh"}
             width={"20vw"}
             position={"relative"}
             left={"10%"}
-            
           >
             <Text
               position={"absolute"}
@@ -186,7 +188,7 @@ const Signup = () => {
             >
               Are you a*
             </Text>
-            <Flex position={"absolute"} left={"15%"} top={"47vh"}>
+            {/* <Flex position={"absolute"} left={"15%"} top={"47vh"}>
               <Input
                 type="checkbox"
                 checked={values.IsSubscriber}
@@ -223,7 +225,48 @@ const Signup = () => {
               <Text pl={"3px"} fontFamily={"serif"}>
                 Provider
               </Text>
-            </Flex>
+            </Flex> */}
+
+            <RadioGroup
+              position={"absolute"}
+              left={"2vw"}
+              top={"47vh"}
+              // onChange={(value) => handleAccountTypeChange(value)}
+              // value={values.AccountType}
+            >
+              <Flex gap={"6rem"}>
+                <Radio
+                checked={values.IsSubscriber}
+                  value="isSubscriber"
+                  border={"1px solid black"}
+                  colorScheme={"yellow"}
+                  onChange={(e) =>
+                    setValues({
+                      ...values,
+                      IsSubscriber: e.target.checked,
+                      IsProvider: false,
+                    })
+                  }
+                >
+                  User
+                </Radio>
+                <Radio
+                checked={values.IsProvider}
+                  value="isProvider"
+                  border={"1px solid black"}
+                  colorScheme={"yellow"}
+                  onChange={(e) =>
+                    setValues({
+                      ...values,
+                      IsProvider: e.target.checked,
+                      IsSubscriber: false,
+                    })
+                  }
+                >
+                  Provider
+                </Radio>
+              </Flex>
+            </RadioGroup>
             <Image
               src={lines44}
               height={"13px"}
@@ -234,6 +277,7 @@ const Signup = () => {
             ></Image>
             <Flex position={"relative"} left={"20px"} top={"53vh"} gap={"5px"}>
               <Checkbox
+                isRequired
                 colorScheme="yellow"
                 border={"1.4px solid"}
                 h={"17px"}

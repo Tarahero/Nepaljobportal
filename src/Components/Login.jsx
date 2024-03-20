@@ -16,7 +16,6 @@ import axios from "axios";
 import vector from "../assets/img/vector.png";
 import logo from "../assets/img/logo.png";
 
-
 const Login = () => {
   const [values, setValues] = useState({
     Email: "",
@@ -32,7 +31,11 @@ const Login = () => {
       console.log(res);
       if (res.data.Status === "Success") {
         console.log("logged in successfully");
-        navigate("/");
+        if (res.data.body === 1) {
+          navigate("/");
+        } else {
+          navigate("/providerdashboard");
+        }
       } else {
         alert(res.data.Error);
       }
@@ -94,6 +97,7 @@ const Login = () => {
             Username
           </Text>
           <Input
+            isRequired
             backgroundColor={"white"}
             border={"1px solid"}
             position={"absolute"}
@@ -112,6 +116,7 @@ const Login = () => {
             Password
           </Text>
           <Input
+            isRequired
             backgroundColor={"white"}
             border={"1px solid"}
             position={"absolute"}
