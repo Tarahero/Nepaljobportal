@@ -166,12 +166,12 @@ const Dashboard = () => {
             border={"1px solid black"}
             backgroundColor={"#DDDBCB"}
             borderRadius={"10px"}
-            width={"369px"}
+            width={"30vw"}
             height={"111px"}
             position={"absolute"}
-            top={"620px"}
-            bottom={"0px"}
-            left={"47%"}
+            top={"80vh"}
+            bottom={"0"}
+            right={"10vw"}
             boxShadow={"7px 7px 7px #414141"}
           >
             <Text textAlign={"center"} fontWeight={600}>
