@@ -43,8 +43,14 @@ const Signup = () => {
       });
       
       console.log(response);
-      console.log("created successfully");
-      navigate("/login");
+      if (response.data.Status ==="Success"){
+        console.log("created successfully");
+        navigate("/login");
+
+      }else{
+        alert(response.data.Error)
+
+      }
     } catch (error) {
       console.log("Error", error);
     }
