@@ -15,11 +15,8 @@ image {
 }
 
 .vector {
-  margin: 0;
-  padding: 0;
-  height: 622px;
   position: relative;
-  width: 677px;
+  top: 50%;
   float: right;
 }
 

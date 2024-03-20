@@ -53,30 +53,36 @@ const Login = () => {
       </div>
       <Image
         src={runningman}
-        height={"100vh"}
+        height={{
+          base: "",
+          md: "20vh",
+          lg: "100vh",
+        }}
         width={"auto"}
         position={"absolute"}
-      />
-      <Image
-        src={logo}
-        alt=""
-        position={"relative"}
-        left={"0%"}
-        height={"100%"}
-        width={"114px"}
       />
 
       <form onSubmit={handleSubmit}>
         <Box
-          height={"400px"}
-          width={"440px"}
+          height={{
+            base: "45vh",
+            lg: "55vh",
+          }}
+          width={{
+            base: "80vw",
+            lg: "30vw",
+          }}
           bgColor={"#DDDBCB"}
           border={"1px solid black"}
           borderRadius={"30px"}
           boxShadow={"5px 1px 25px "}
           position={"absolute"}
-          top={"230px"}
-          right={"270px"}
+          top={"35vh"}
+          right={{
+            base: "10vw",
+            lg: "25vw",
+          }}
+          transition={"0.25s"}
         >
           <Text
             textAlign={"center"}
@@ -89,9 +95,9 @@ const Login = () => {
             Login Panel
           </Text>
           <Text
-            textAlign={"start"}
-            mt={"50px"}
-            marginLeft={"115px"}
+            display={"flex"}
+            justifyContent={"center"}
+            mt={"5vh"}
             fontFamily={"serif"}
           >
             Username
@@ -101,16 +107,19 @@ const Login = () => {
             backgroundColor={"white"}
             border={"1px solid"}
             position={"absolute"}
-            left={"25%"}
+            left={{base: "20%",lg:"25%"}}
             borderRadius={"5px"}
             height={"25px"}
-            width={"15vw"}
+            width={{
+              base: "50vw",
+              lg: "15vw",
+            }}
             onChange={(e) => setValues({ ...values, Email: e.target.value })}
           ></Input>
           <Text
-            textAlign={"start"}
+          display={"flex"}
+          justifyContent={"center"}
             mt={"35px"}
-            marginLeft={"115px"}
             fontFamily={"serif"}
           >
             Password
@@ -119,11 +128,14 @@ const Login = () => {
             isRequired
             backgroundColor={"white"}
             border={"1px solid"}
-            position={"absolute"}
-            left={"25%"}
+            position={"relative"}
+            left={{base: "20%",lg:"25%"}}
             borderRadius={"5px"}
             height={"25px"}
-            width={"15vw"}
+            width={{
+              base: "50vw",
+              lg: "15vw",
+            }}
             onChange={(e) => setValues({ ...values, Password: e.target.value })}
           ></Input>
           <Flex justifyContent={"center"} mt={"40px"}>
