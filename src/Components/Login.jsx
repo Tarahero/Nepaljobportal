@@ -54,7 +54,7 @@ const Login = () => {
       <Image
         src={runningman}
         height={{
-          base: "",
+          base: "1",
           md: "20vh",
           lg: "100vh",
         }}
@@ -107,7 +107,7 @@ const Login = () => {
             backgroundColor={"white"}
             border={"1px solid"}
             position={"absolute"}
-            left={{base: "20%",lg:"25%"}}
+            left={{ base: "20%", lg: "25%" }}
             borderRadius={"5px"}
             height={"25px"}
             width={{
@@ -117,8 +117,8 @@ const Login = () => {
             onChange={(e) => setValues({ ...values, Email: e.target.value })}
           ></Input>
           <Text
-          display={"flex"}
-          justifyContent={"center"}
+            display={"flex"}
+            justifyContent={"center"}
             mt={"35px"}
             fontFamily={"serif"}
           >
@@ -129,7 +129,7 @@ const Login = () => {
             backgroundColor={"white"}
             border={"1px solid"}
             position={"relative"}
-            left={{base: "20%",lg:"25%"}}
+            left={{ base: "20%", lg: "25%" }}
             borderRadius={"5px"}
             height={"25px"}
             width={{

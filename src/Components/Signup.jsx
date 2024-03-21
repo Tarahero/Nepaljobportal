@@ -10,16 +10,16 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import facebook from "../assets/icons/facebook.png";
 import linkedin from "../assets/icons/linked in.png";
 import google from "../assets/icons/google.png";
 import stand from "../assets/img/stand.png";
 import { Checkbox } from "@chakra-ui/react";
-import vector from "../assets/img/vector.png";
 import logo from "../assets/img/logo.png";
 import lines44 from "../assets/img/Line44.png";
 import "../App.css";
+import Background from "../Layout/VectorBackground";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -36,20 +36,18 @@ const Signup = () => {
     event.preventDefault();
     try {
       const roleValue = values.IsProvider ? 0 : values.IsSubscriber ? 1 : null;
-      console.log(roleValue)
+      console.log(roleValue);
       const response = await axios.post("http://localhost:3001/signup", {
         ...values,
         Role: roleValue,
       });
-      
+
       console.log(response);
-      if (response.data.Status ==="Success"){
+      if (response.data.Status === "Success") {
         console.log("created successfully");
         navigate("/login");
-
-      }else{
-        alert(response.data.Error)
-
+      } else {
+        alert(response.data.Error);
       }
     } catch (error) {
       console.log("Error", error);
@@ -58,30 +56,26 @@ const Signup = () => {
 
   return (
     <>
-      <div className="background">
-        <Box>
-          <img src={vector} className="vector" alt=""></img>
-        </Box>
-      </div>
-
       <Image src={logo} alt="" position={"absolute"} h={"92px"} w={"114px"} />
       <Image
-        className="signup"
+        position={"fixed"}
         src={stand}
         alt=""
+        top={"0"}
         height={"100vh"}
         width={"auto"}
         ml={"20vw"}
       ></Image>
+      <Background />
 
       <form onSubmit={handleSubmit}>
         <Box
-          className="main_container"
           bgColor={"#C1C1C1"}
           height={"80vh"}
           position={"absolute"}
           top={"10vh"}
-          right={"40vh"}
+          width={{ base: "80vw", lg: "20vw" }}
+          right={{ base: "10vw", lg: "30vw" }}
           borderRadius={"20px"}
           boxShadow={"1px 2px 20px black"}
         >
@@ -97,10 +91,10 @@ const Signup = () => {
           <Box
             bgColor={"#DDDBCB"}
             borderRadius={"15px"}
+            mt={"2vh"}
             height={"70vh"}
-            width={"20vw"}
+            width={{ base: "", lg: "20vw" }}
             position={"relative"}
-            left={"10%"}
           >
             <Text
               position={"absolute"}
@@ -117,7 +111,7 @@ const Signup = () => {
               left={"2vw"}
               top={"8vh"}
               height={"28px"}
-              width={"80%"}
+              width={{ base: "90%", lg: "80%" }}
               bgColor={"DDDBCB"}
               onChange={(e) => {
                 setValues({ ...values, Email: e.target.value });
@@ -138,7 +132,7 @@ const Signup = () => {
               left={"2vw"}
               top={"18vh"}
               height={"28px"}
-              width={"80%"}
+              width={{ base: "90%", lg: "80%" }}
               bgColor={"DDDBCB"}
               onChange={(e) => {
                 setValues({ ...values, Username: e.target.value });
@@ -159,7 +153,7 @@ const Signup = () => {
               left={"2vw"}
               top={"28vh"}
               height={"28px"}
-              width={"80%"}
+              width={{ base: "90%", lg: "80%" }}
               bgColor={"DDDBCB"}
               onChange={(e) => {
                 setValues({ ...values, Password: e.target.value });
@@ -180,7 +174,7 @@ const Signup = () => {
               left={"2vw"}
               top={"38vh"}
               height={"28px"}
-              width={"80%"}
+              width={{ base: "90%", lg: "80%" }}
               bgColor={"DDDBCB"}
               onChange={(e) => {
                 setValues({ ...values, Role: e.target.value });
@@ -240,9 +234,9 @@ const Signup = () => {
               // onChange={(value) => handleAccountTypeChange(value)}
               // value={values.AccountType}
             >
-              <Flex gap={"6rem"}>
+              <Flex gap={{base:"12rem",lg:"5rem"}}>
                 <Radio
-                checked={values.IsSubscriber}
+                  checked={values.IsSubscriber}
                   value="isSubscriber"
                   border={"1px solid black"}
                   colorScheme={"yellow"}
@@ -257,7 +251,7 @@ const Signup = () => {
                   User
                 </Radio>
                 <Radio
-                checked={values.IsProvider}
+                  checked={values.IsProvider}
                   value="isProvider"
                   border={"1px solid black"}
                   colorScheme={"yellow"}
@@ -298,7 +292,7 @@ const Signup = () => {
               width={"150px"}
               position={"absolute"}
               transition={".25s"}
-              left={"4vw"}
+              left={{ base: "20.39vw", lg: "4vw" }}
               top={"58vh"}
               bgColor={"#828282 "}
               border={"none"}
@@ -315,30 +309,34 @@ const Signup = () => {
               Sign up
             </Button>
           </Box>
+          <Link to={"https://www.facebook.com"}>
+            <Image
+              src={facebook}
+              position={"absolute"}
+              top={"72vh"}
+              height={"22px"}
+              _hover={{ cursor: "pointer" }}
+            ></Image>
+          </Link>
           <Image
-            src={facebook}
-            position={"absolute"}
-            left={"3.5vw"}
-            top={"72vh"}
-            height={"22px"}
-            _hover={{ cursor: "pointer" }}
-          ></Image>
-          <Image
+            display={"flex"}
             src={linkedin}
             position={"absolute"}
             height={"22px"}
-            left={"10vw"}
+            left={{ base: "30vw", lg: "7vw" }}
             top={"72vh"}
             _hover={{ cursor: "pointer" }}
           ></Image>
-          <Image
-            src={google}
-            position={"absolute"}
-            height={"22px"}
-            left={"16.7vw"}
-            top={"72vh"}
-            _hover={{ cursor: "pointer" }}
-          ></Image>
+          <Link to={"https://www.google.com"}>
+            <Image
+              src={google}
+              position={"absolute"}
+              height={"22px"}
+              right={"0vh"}
+              top={"72vh"}
+              _hover={{ cursor: "pointer" }}
+            ></Image>
+          </Link>
         </Box>
       </form>
     </>
