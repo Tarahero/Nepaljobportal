@@ -19,11 +19,10 @@ const Dashboard = () => {
           marginLeft={"57px"}
           marginTop={"28px"}
         >
-          <form action="/search" method="get" backgroundColor={"#414141"}>
             <Input
-              type="text"
-              id="search"
-              name="q"
+            position={"absolute"}
+            width={""}
+            left={"18vw"}
               placeholder="Search..."
               _placeholder={{
                 color: "white",
@@ -34,7 +33,7 @@ const Dashboard = () => {
               borderRadius={"7px"}
               height={"30px"}
             />
-          </form>
+          
           <SearchIcon
             height={"28px"}
             marginLeft={"-200px"}
@@ -64,6 +63,10 @@ const Dashboard = () => {
             </Text>
           </Box>
         </Link>
+      </Box>
+      <Box position={""} display={{base:"block",lg:"none"}} border={"1px solid black"} height={"8vh"} maxW={"100%" }>
+        
+
       </Box>
       <Box height={"auto"} width={"79%"} marginLeft={"17%"}>
         <Text fontWeight={"600"} marginTop={"30px"}>
