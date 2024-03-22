@@ -15,6 +15,7 @@ import { useState } from "react";
 import axios from "axios";
 import vector from "../assets/img/vector.png";
 import logo from "../assets/img/logo.png";
+import Background from "../Layout/VectorBackground";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -46,11 +47,6 @@ const Login = () => {
 
   return (
     <>
-      <div className="background">
-        <Box>
-          <img src={vector} className="vector" alt=""></img>
-        </Box>
-      </div>
       <Image
         src={runningman}
         height={{
@@ -60,7 +56,8 @@ const Login = () => {
         }}
         width={"auto"}
         position={"absolute"}
-      />
+        />
+        <Background/>
 
       <form onSubmit={handleSubmit}>
         <Box
