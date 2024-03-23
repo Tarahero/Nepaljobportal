@@ -26,6 +26,7 @@ const Signup = () => {
     Email: "",
     Username: "",
     Password: "",
+    conPassword:"",
     IsProvider: false,
     IsSubscriber: false,
   });
@@ -33,24 +34,29 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const roleValue = values.IsProvider ? 0 : values.IsSubscriber ? 1 : null;
-      console.log(roleValue);
-      const response = await axios.post("http://localhost:3001/signup", {
-        ...values,
-        Role: roleValue,
-      });
-
-      console.log(response);
-      if (response.data.Status === "Success") {
-        alert("created successfully");
-        navigate("/login");
-      } else {
-        alert(response.data.Error);
+    if ({...values.Password} == {...values.conPassword}) {
+      
+      event.preventDefault();
+      try {
+        const roleValue = values.IsProvider ? 0 : values.IsSubscriber ? 1 : null;
+        console.log(roleValue);
+        const response = await axios.post("http://localhost:3001/signup", {
+          ...values,
+          Role: roleValue,
+        });
+  
+        console.log(response);
+        if (response.data.Status === "Success") {
+          alert("created successfully");
+          navigate("/login");
+        } else {
+          alert(response.data.Error);
+        }
+      } catch (error) {
+        console.log("Error", error);
       }
-    } catch (error) {
-      console.log("Error", error);
+    }else{
+      alert("password not matched")
     }
   };
 
@@ -105,6 +111,7 @@ const Signup = () => {
               Email
             </Text>
             <Input
+            type="email"
               border={"1px solid"}
               borderRadius={"2px"}
               position={"absolute"}
@@ -147,6 +154,8 @@ const Signup = () => {
               Password
             </Text>
             <Input
+              isRequired
+              type="password"
               border={"1px solid"}
               borderRadius={"2px"}
               position={"absolute"}
@@ -168,6 +177,8 @@ const Signup = () => {
               Confirm Password
             </Text>
             <Input
+              isRequired
+              type="password"
               border={"1px solid"}
               borderRadius={"2px"}
               position={"absolute"}
@@ -177,7 +188,7 @@ const Signup = () => {
               width={{ base: "90%", lg: "80%" }}
               bgColor={"DDDBCB"}
               onChange={(e) => {
-                setValues({ ...values, Role: e.target.value });
+                setValues({ ...values, conPassword: e.target.value });
               }}
             ></Input>
             <Text
@@ -234,7 +245,7 @@ const Signup = () => {
               // onChange={(value) => handleAccountTypeChange(value)}
               // value={values.AccountType}
             >
-              <Flex gap={{base:"12rem",lg:"5rem"}}>
+              <Flex gap={{ base: "12rem", lg: "5rem" }}>
                 <Radio
                   checked={values.IsSubscriber}
                   value="isSubscriber"

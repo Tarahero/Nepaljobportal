@@ -1,16 +1,41 @@
-import { Box, Image, Input, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Flex, Image, Input, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import critical from "../assets/img/critical.png";
 import piechart from "../assets/img/piechart.png";
 import process from "../assets/img/Process.png";
+import axios from "axios";
+import { Spinner } from "@chakra-ui/react";
 const Analyzer = () => {
+  const [discrip, setDescrip] = useState({
+    message: "",
+  });
+  const [geminians, setGeminians] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  axios.defaults.withCredentials = true;
+
+  const analyzedButton = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:3001/analyzer",
+        discrip
+      );
+      setLoading(false);
+
+      setGeminians(response.data.message);
+      console.log(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Box
         border={"1px solid black"}
         position={"absolute"}
-        height={"520px"}
-        width={"900px"}
+        height={"75vh"}
+        width={"65vw"}
         marginLeft={"25%"}
         marginTop={"7%"}
         bgColor={"#DDDBCB"}
@@ -41,23 +66,26 @@ const Analyzer = () => {
         </Text>
 
         <Input
-          border={"1px solid"}
+          position={"absolute"}
+          border={"1px solid black"}
           fontFamily={"Times New Roman"}
           backgroundColor={"white"}
-          type="text"
-          height={"300px"}
-          width={"780px"}
+          height={"40vh"}
+          width={"25vw"}
           marginTop={"80px"}
           marginLeft={"30px"}
-          position={"fixed"}
-          _hover={{ borderColor: "black", boxShadow: "none" }}
-          placeholder={`Please describe your ideal job,including preferred industry,role, key responsibilities, desired skills,and any specific preferences.This will help us customize our job analysis to match your preferences and find the most suitable opportunities for you.`}
+          placeholder={`What are your skills , qualification ,experience`}
+          textAlign={"center"}
           _placeholder={{
-            whiteSpace: "pre-line",
+            whiteSpace: "pre-wrap",
             textAlign: "center",
             letterSpacing: "2.5px",
           }}
+          onChange={(e) => {
+            setDescrip({ ...discrip, message: e.target.value });
+          }}
         ></Input>
+
         <Image
           cursor={"pointer"}
           height={"10%"}
@@ -65,7 +93,34 @@ const Analyzer = () => {
           position={"absolute"}
           right={"-49px"}
           bottom={"-48px"}
+          onClick={analyzedButton}
         ></Image>
+        <Box
+          border={"1px solid black"}
+          fontFamily={"Times New Roman"}
+          backgroundColor={"white"}
+          type="text"
+          height={"40vh"}
+          width={"25vw"}
+          marginTop={"80px"}
+          marginLeft={"30px"}
+          position={"absolute"}
+          right={"8vw"}
+        >
+          {isLoading ? (
+            <Flex justifyContent={"center"} mt={"16vh"}>
+              <Spinner
+                thickness="4px"
+                speed="0.2s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              ></Spinner>
+            </Flex>
+          ) : (
+            <Text fontSize={"14px"} >{geminians}</Text>
+          )}
+        </Box>
       </Box>
     </>
   );

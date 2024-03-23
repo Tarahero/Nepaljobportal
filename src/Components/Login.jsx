@@ -8,6 +8,7 @@ import {
   Input,
   Button,
   Checkbox,
+  Show,
 } from "@chakra-ui/react";
 import runningman from "../assets/img/runningMan.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -32,8 +33,8 @@ const Login = () => {
       console.log(res);
       if (res.data.Status === "Success") {
         console.log("logged in successfully");
-        console.log(res.data.Role)
-        console.log(res.data.isLoggedIn)
+        console.log(res.data.Role);
+        console.log(res.data.isLoggedIn);
 
         if (res.data.Role === 1) {
           navigate("/");
@@ -59,8 +60,8 @@ const Login = () => {
         }}
         width={"auto"}
         position={"absolute"}
-        />
-        <Background/>
+      />
+      <Background />
 
       <form onSubmit={handleSubmit}>
         <Box
@@ -126,7 +127,7 @@ const Login = () => {
           </Text>
           <Input
             isRequired
-            backgroundColor={"white"}
+            type={!Show? "text": "password"}
             border={"1px solid"}
             position={"relative"}
             left={{ base: "20%", lg: "25%" }}
