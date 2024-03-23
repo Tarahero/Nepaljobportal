@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { Box, Text, Input, Icon, Image, Button } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -10,6 +10,9 @@ import cvgroup from "../assets/img/cvgroup.png";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+
+
+
   return (
     <>
       <Box display={"flex"}>

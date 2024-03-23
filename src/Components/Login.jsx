@@ -32,7 +32,10 @@ const Login = () => {
       console.log(res);
       if (res.data.Status === "Success") {
         console.log("logged in successfully");
-        if (res.data.body === 1) {
+        console.log(res.data.Role)
+        console.log(res.data.isLoggedIn)
+
+        if (res.data.Role === 1) {
           navigate("/");
         } else {
           navigate("/providerdashboard");

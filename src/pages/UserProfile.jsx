@@ -1,7 +1,33 @@
 import { Box, Button, Text } from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const [auth, setAuth] = useState(false);
+  const [name, setName] = useState("");
+  axios.defaults.withCredentials = true;
+  const navigate =useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001");
+        if (response.data.Status === "Success") {
+          setAuth(true);
+          setName(response.data.name)
+        } else {
+          setAuth(false);
+          
+          console.log(response.data.Error);
+        }
+      } catch (error) {
+        console.log("failed making ", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       {" "}
@@ -16,13 +42,28 @@ const UserProfile = () => {
         ml={"522px"}
         t={"100px"}
       >
-        <Text marginLeft={"20vw"} color={"black"} fontSize={"24px"} letterSpacing={2} mt={"10px"}>
+        <Text
+          marginLeft={"20vw"}
+          color={"black"}
+          fontSize={"24px"}
+          letterSpacing={2}
+          mt={"10px"}
+        >
           Portfolio{" "}
         </Text>
-        <Box backgroundColor={"black"} h={"1px"} w={"290px"} marginLeft={"200px"}></Box>
-        <Text marginLeft={"17.5vw"} color={"black"}>
-          This place shows the name
-        </Text>
+        <Box
+          backgroundColor={"black"}
+          h={"1px"}
+          w={"290px"}
+          marginLeft={"200px"}
+        ></Box>
+        {auth ? (
+          <Text marginLeft={"17.5vw"} color={"black"}>Name: {name}</Text>
+          ) : (
+          <Text marginLeft={"17.5vw"} color={"black"}>Login to view </Text>
+          
+        )}
+
         <Button
           bgColor={"#D9D9D9"}
           border={"1px solid"}

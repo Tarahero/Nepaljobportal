@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../App.css";
-import { List, Box, Flex } from "@chakra-ui/react";
+import { List, Box, Flex, Button } from "@chakra-ui/react";
 import { RxDashboard } from "react-icons/rx";
 import logo from "../assets/img/logo.png";
 import { CiSliderHorizontal } from "react-icons/ci";
@@ -12,8 +12,17 @@ import { BsChatRightText } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import vector from "../assets/img/vector.png";
 import Background from "./VectorBackground";
+import axios from "axios";
 
 const Sidebar = () => {
+  const handleDeletetoken = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/logout");
+      location.reload(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Background />
@@ -69,17 +78,17 @@ const Sidebar = () => {
             </List>
             <List marginTop={"3vh"} paddingLeft={"20px"}>
               <Link to="/setting">
-               <Box display={"flex"} gap={"10px"}>
-               <IoSettingsOutline fontSize={"20px"} cursor={"pointer"} />
-                Setting
-               </Box>
+                <Box display={"flex"} gap={"10px"}>
+                  <IoSettingsOutline fontSize={"20px"} cursor={"pointer"} />
+                  Setting
+                </Box>
               </Link>
             </List>
             <List marginTop={"3vh"} paddingLeft={"20px"}>
               <Link to="/chat">
                 <Box display={"flex"} gap={"10px"}>
-                <BsChatRightText  fontSize={"20px"} cursor={"pointer"}  />
-                Chat
+                  <BsChatRightText fontSize={"20px"} cursor={"pointer"} />
+                  Chat
                 </Box>
               </Link>
             </List>
@@ -96,18 +105,25 @@ const Sidebar = () => {
           >
             <List>
               <Link to="/help">
-               <Box display={"flex"} gap={"10px"}> 
-               Help
-                <IoMdHelpCircleOutline  fontSize={"22px"} cursor={"pointer"} />
-               </Box>
+                <Box display={"flex"} gap={"10px"}>
+                  Help
+                  <IoMdHelpCircleOutline fontSize={"22px"} cursor={"pointer"} />
+                </Box>
               </Link>
             </List>
             <List marginTop={"0%"} mt={"1vh"}>
               <Link to="/login">
-               <Box display={"flex"} gap={"10px"}>
-               Logout
-                <RiLogoutBoxLine fontSize={"20px"} cursor={"pointer"} />
-               </Box>
+                <Button
+                  display={"flex"}
+                  gap={"10px"}
+                  bg={"transparent"}
+                  color={"white"}
+                  _hover={{ bg: "transparen" }}
+                  onClick={handleDeletetoken}
+                >
+                  Logout
+                  <RiLogoutBoxLine fontSize={"20px"} cursor={"pointer"} />
+                </Button>
               </Link>
             </List>
           </Flex>
