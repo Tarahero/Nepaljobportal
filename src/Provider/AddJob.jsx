@@ -52,7 +52,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="45px"
+            height="5vh"
+            width={"35vw"}
             borderRadius={"10px"}
           ></Input>
           <Text letterSpacing={2} fontFamily={"Times New roman"}>
@@ -61,7 +62,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="45px"
+            height="5vh"
+            width={"35vw"}
             borderRadius={"10px"}
           ></Input>
           <Text letterSpacing={2} fontFamily={"Times New roman"}>
@@ -70,7 +72,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="45px"
+            height="5vh"
+            width={"35vw"}
             borderRadius={"10px"}
           ></Input>
           <Text letterSpacing={2} fontFamily={"Times New roman"}>
@@ -79,7 +82,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="45px"
+            height="5vh"
+            width={"35vw"}
             borderRadius={"10px"}
           ></Input>
           <Text letterSpacing={2} fontFamily={"Times New roman"}>
@@ -88,7 +92,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="45px"
+            height="5vh"
+            width={"35vw"}
             borderRadius={"10px"}
           ></Input>
           <Text letterSpacing={2} fontFamily={"Times New roman"}>
@@ -97,8 +102,8 @@ const AddJob = () => {
           <Input
             bgColor={"white"}
             border={"1px solid"}
-            height="200px"
-            borderRadius={"10px"}
+            height="15vh"
+            width={"35vw"}            borderRadius={"10px"}
           ></Input>
         </SimpleGrid>
         <Box
